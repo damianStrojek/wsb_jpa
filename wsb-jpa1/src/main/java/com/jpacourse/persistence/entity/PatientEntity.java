@@ -40,7 +40,7 @@ public class PatientEntity {
 
 	// Additional field
 	@Column(nullable = false, columnDefinition = "BOOLEAN DEFAULT FALSE")
-	private Boolean isAllergic;
+	private Boolean isIll;
 
 	public Long getId() {
 		return id;
@@ -124,12 +124,12 @@ public class PatientEntity {
 		visit.setPatient(null);
 	}
 
-	public Boolean getIsAllergic() {
-		return isAllergic;
+	public Boolean getIsIll() {
+		return isIll;
 	}
 
-	public void setIsAllergic(Boolean isAllergic) {
-		this.isAllergic = isAllergic;
+	public void setIsIll(Boolean isIll) {
+		this.isIll = isIll;
 	}
 
 }
