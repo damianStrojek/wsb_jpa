@@ -26,7 +26,7 @@ public class PatientDaoImpl extends AbstractDao<PatientEntity, Long> implements 
     public Collection<PatientEntity> findPatientsByLastName(String lastName)
     {
         return entityManager.createQuery(
-                "select patientEntity from PatientEntity where patientEntity.lastName = :lastName", PatientEntity.class)
+                "select patientEntity from PatientEntity patientEntity where patientEntity.lastName = :lastName", PatientEntity.class)
                 .setParameter("lastName", lastName)
                 .getResultList();
     }
@@ -36,7 +36,7 @@ public class PatientDaoImpl extends AbstractDao<PatientEntity, Long> implements 
     public Collection<PatientEntity> findPatientsWithVisitsCountGreaterThan(int visitsCount)
     {
         return entityManager.createQuery(
-                "select patientEntity from PatientEntity where size(patientEntity.visits) > :visitsCount", PatientEntity.class)
+                "select patientEntity from PatientEntity patientEntity where size(patientEntity.visits) > :visitsCount", PatientEntity.class)
                 .setParameter("visitsCount", visitsCount)
                 .getResultList();
     }
@@ -46,7 +46,7 @@ public class PatientDaoImpl extends AbstractDao<PatientEntity, Long> implements 
     public Collection<PatientEntity> findPatientsByIllnessStatus(Boolean isIll)
     {
         return entityManager.createQuery(
-                "select patientEntity from PatientEntity where patientEntity.isIll = :illnessStatus ", PatientEntity.class)
+                "select patientEntity from PatientEntity patientEntity where patientEntity.isIll = :illnessStatus ", PatientEntity.class)
                 .setParameter("illnessStatus", isIll)
                 .getResultList();
     }
