@@ -1,13 +1,8 @@
 package com.jpacourse.persistence.entity;
 
+import javax.persistence.*;
 import java.time.LocalDate;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import java.util.Collection;
 
 @Entity
 @Table(name = "PATIENT")
@@ -33,6 +28,19 @@ public class PatientEntity {
 
 	@Column(nullable = false)
 	private LocalDate dateOfBirth;
+
+	// One way relation to parent
+	@OneToOne(cascade=CascadeType.ALL, fetch=FetchType.LAZY, optional=false)
+	@JoinColumn(name="address_id")
+	private AddressEntity address;
+
+	// Two-way relation
+	@OneToMany(mappedBy="patient", cascade={CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE}, fetch=FetchType.LAZY)
+	private Collection<VisitEntity> visits;
+
+	// Additional field
+	@Column(nullable = false, columnDefinition = "BOOLEAN DEFAULT FALSE")
+	private Boolean isAllergic;
 
 	public Long getId() {
 		return id;
@@ -88,6 +96,40 @@ public class PatientEntity {
 
 	public void setDateOfBirth(LocalDate dateOfBirth) {
 		this.dateOfBirth = dateOfBirth;
+	}
+
+	public AddressEntity getAddress() {
+		return address;
+	}
+
+	public void setAddress(AddressEntity address) {
+		this.address = address;
+	}
+
+	public Collection<VisitEntity> getVisits() {
+		return visits;
+	}
+
+	public void setVisits(Collection<VisitEntity> visits) {
+		this.visits = visits;
+	}
+
+	public void addVisit(VisitEntity visit) {
+		visits.add(visit);
+		visit.setPatient(this);
+	}
+
+	public void removeVisit(VisitEntity visit) {
+		visits.remove(visit);
+		visit.setPatient(null);
+	}
+
+	public Boolean getIsAllergic() {
+		return isAllergic;
+	}
+
+	public void setIsAllergic(Boolean isAllergic) {
+		this.isAllergic = isAllergic;
 	}
 
 }
