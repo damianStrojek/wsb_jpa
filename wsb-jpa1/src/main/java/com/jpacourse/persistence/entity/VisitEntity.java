@@ -1,13 +1,8 @@
 package com.jpacourse.persistence.entity;
 
+import javax.persistence.*;
 import java.time.LocalDateTime;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import java.util.Collection;
 
 @Entity
 @Table(name = "VISIT")
@@ -21,6 +16,20 @@ public class VisitEntity {
 
 	@Column(nullable = false)
 	private LocalDateTime time;
+
+	// Two-way relation
+	@ManyToOne
+	@JoinColumn(name="patient_id")
+	private PatientEntity patient;
+
+	// Two-way relation
+	@ManyToOne
+	@JoinColumn(name="doctor_id")
+	private DoctorEntity doctor;
+
+	// Two-way relation
+	@OneToMany(mappedBy="visit", cascade=CascadeType.ALL, fetch=FetchType.LAZY, orphanRemoval=true)
+	private Collection<MedicalTreatmentEntity> medicalTreatments;
 
 	public Long getId() {
 		return id;
@@ -44,6 +53,40 @@ public class VisitEntity {
 
 	public void setTime(LocalDateTime time) {
 		this.time = time;
+	}
+
+	public PatientEntity getPatient() {
+		return patient;
+	}
+
+	public void setPatient(PatientEntity patient) {
+		this.patient = patient;
+	}
+
+	public DoctorEntity getDoctor() {
+		return doctor;
+	}
+
+	public void setDoctor(DoctorEntity doctor) {
+		this.doctor = doctor;
+	}
+
+	public Collection<MedicalTreatmentEntity> getMedicalTreatments() {
+		return medicalTreatments;
+	}
+
+	public void setMedicalTreatments(Collection<MedicalTreatmentEntity> medicalTreatments) {
+		this.medicalTreatments = medicalTreatments;
+	}
+
+	public void addMedicalTreatment(MedicalTreatmentEntity medicalTreatment) {
+		medicalTreatments.add(medicalTreatment);
+		medicalTreatment.setVisit(this);
+	}
+
+	public void removeMedicalTreatment(MedicalTreatmentEntity medicalTreatment) {
+		medicalTreatments.remove(medicalTreatment);
+		medicalTreatment.setVisit(null);
 	}
 
 }
