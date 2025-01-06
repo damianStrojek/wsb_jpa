@@ -27,12 +27,14 @@ public class VisitServiceImpl implements VisitService
     @Override
     public VisitTO findById(Long id)
     {
+        if(id == null) return null;
         final VisitEntity entity = visitDao.findOne(id);
         return VisitMapper.mapToTO(entity);
     }
 
     @Override
     public Collection<VisitTO> findAllByPatientId(Long patientId) {
+        if(patientId == null) return null;
         final Collection<VisitEntity> entities = visitDao.findByPatient(patientId);
 
         return entities

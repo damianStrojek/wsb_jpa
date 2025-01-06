@@ -27,7 +27,9 @@ public class MedicalTreatmentEntity {
 	@Enumerated(EnumType.STRING)
 	private TreatmentType type;
 
-	// Two-way relation
+	/*
+	 	Many-To-One relation - there can be many MedicalTreatments in one Visit
+	 */
 	@ManyToOne(optional=false)
 	@JoinColumn(name="visit_id")
 	private VisitEntity visit;

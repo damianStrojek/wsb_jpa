@@ -34,6 +34,7 @@ public class PatientServiceImpl implements PatientService
     @Override
     @Transactional(readOnly = true)
     public PatientTO getPatientById(Long patientId) {
+        if(patientId == null) return null;
         PatientEntity patientEntity = this.patientDao.findPatientById(patientId);
         return PatientMapper.mapToTO(patientEntity);
     }
@@ -41,6 +42,7 @@ public class PatientServiceImpl implements PatientService
     @Override
     @Transactional
     public PatientTO saveOrUpdatePatient(PatientTO patientTO) {
+        if(patientTO == null) return null;
         PatientEntity patientEntity = PatientMapper.mapToEntity(patientTO);
         PatientEntity savedEntity = this.patientDao.saveOrUpdate(patientEntity);
         return PatientMapper.mapToTO(savedEntity);
@@ -49,6 +51,7 @@ public class PatientServiceImpl implements PatientService
     @Override
     @Transactional
     public void addVisit(Long patientId, Long doctorId, String description, LocalDateTime time) {
-        this.patientDao.addVisitToPatient(patientId, doctorId, description, time);
+        if(patientId != null && doctorId != null && description != null && time != null)
+            this.patientDao.addVisitToPatient(patientId, doctorId, description, time);
     }
 }

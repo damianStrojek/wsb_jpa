@@ -29,16 +29,23 @@ public class PatientEntity {
 	@Column(nullable = false)
 	private LocalDate dateOfBirth;
 
-	// One way relation to parent
+	/*
+	 	One-To-One relation - there can be one Address for each Patient
+	 */
 	@OneToOne(cascade=CascadeType.ALL, fetch=FetchType.LAZY, optional=false)
 	@JoinColumn(name="address_id")
 	private AddressEntity address;
 
-	// Two-way relation
+	/*
+		One-To-Many relation - there can be one Patient with many Visits
+	 */
 	@OneToMany(mappedBy="patient", cascade={CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE}, fetch=FetchType.LAZY)
 	private Collection<VisitEntity> visits;
 
-	// Additional field
+	/*
+		Additional field - is Patient Ill?
+		# Had no better idea to be honest
+	 */
 	@Column(nullable = false, columnDefinition = "BOOLEAN DEFAULT FALSE")
 	private Boolean isIll;
 

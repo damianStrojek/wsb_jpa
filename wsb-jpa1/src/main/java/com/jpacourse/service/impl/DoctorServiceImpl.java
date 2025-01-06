@@ -17,8 +17,8 @@ public class DoctorServiceImpl implements DoctorService
     private final DoctorDao doctorDao;
 
     @Autowired
-    public DoctorServiceImpl(DoctorDao pDoctorDao){
-        doctorDao = pDoctorDao;
+    public DoctorServiceImpl(DoctorDao doctorDaoConstr){
+        doctorDao = doctorDaoConstr;
     }
 
     @Override

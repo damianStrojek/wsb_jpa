@@ -81,15 +81,15 @@ public class PatientDaoTest {
 
         assertNotNull(listOfResults);
         assertFalse(listOfResults.isEmpty());
-        assertEquals(4, listOfResults.size());
+        assertEquals(5, listOfResults.size());
 
         PatientEntity patient = listOfResults.get(0);
         assertThat(patient).isNotNull();
-        assertEquals("Sarah", patient.getFirstName());
+        assertEquals("taro.sato@japanmail.co.jp", patient.getEmail());
     }
 
     @Test
-    public void testFindPatientsWithAllergy() {
+    public void testFindPatientsWithIllness() {
         Boolean isIll = true;
 
         Collection<PatientEntity> result = patientDao.findPatientsByIllnessStatus(isIll);
@@ -104,7 +104,7 @@ public class PatientDaoTest {
 
         assertEquals("Ivan", patient.getFirstName());
         assertEquals("Popov", patient.getLastName());
-        assertEquals("P003", patient.getPatientNumber());
+        assertEquals("P004", patient.getPatientNumber());
         assertThat(patient.getIsIll()).isEqualTo(isIll);
 
         PatientEntity patient2 = listOfResults.get(1);
@@ -124,7 +124,7 @@ public class PatientDaoTest {
             PatientEntity patientDebug = patientDao.findOne(patientId);
 
             try {
-                Thread.sleep(10000);
+                Thread.sleep(1000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
