@@ -21,7 +21,7 @@ public class AddressDaoTest
 
     @Transactional
     @Test
-    public void testShouldFindAddressById() {
+    public void shouldFindAddressById() {
         AddressEntity addressEntity = addressDao.findOne(12L);
 
         assertThat(addressEntity).isNotNull();
@@ -30,7 +30,7 @@ public class AddressDaoTest
     }
 
     @Test
-    public void testShouldSaveAddress() {
+    public void shouldSaveAddress() {
         AddressEntity addressEntity = new AddressEntity();
         addressEntity.setAddressLine1("What is this?");
         addressEntity.setAddressLine2("Welp, yeah");
@@ -47,7 +47,7 @@ public class AddressDaoTest
 
     @Transactional
     @Test
-    public void testShouldSaveAndRemoveAddress() {
+    public void shouldSaveAndRemoveAddress() {
         AddressEntity addressEntity = new AddressEntity();
         addressEntity.setAddressLine1("What is this?");
         addressEntity.setAddressLine2("Welp, yeah");

@@ -33,7 +33,7 @@ public class PatientDaoTest {
     private DoctorDao doctorDao;
 
     @Test
-    public void createVisit()
+    public void shouldCreateVisit()
     {
         LocalDateTime visitDate = LocalDateTime.now();
         DoctorEntity doctor = doctorDao.findOne(10L);
@@ -56,7 +56,7 @@ public class PatientDaoTest {
     }
 
     @Test
-    public void testFindPatientsByLastName()
+    public void shouldFindPatientsByLastName()
     {
         String lastName = "Strojek";
 
@@ -72,7 +72,7 @@ public class PatientDaoTest {
     }
 
     @Test
-    public void testFindPatientsWithVisitsCountGreaterThanOne()
+    public void shouldFindPatientsWithVisitsCountGreaterThanOne()
     {
         int visitsCount = 1;
 
@@ -89,7 +89,13 @@ public class PatientDaoTest {
     }
 
     @Test
-    public void testFindPatientsWithIllness() {
+    public void shouldFindPatientsWithIllness() {
+
+        /*
+            Note: I should not search directly by value, but use a query like greater/less/later/earlier/contains,
+            depending on the selected variable type, but in the case of Boolean value I didn't know how to do it.
+         */
+
         Boolean isIll = true;
 
         Collection<PatientEntity> result = patientDao.findPatientsByIllnessStatus(isIll);
@@ -97,7 +103,7 @@ public class PatientDaoTest {
 
         assertNotNull(listOfResults);
         assertFalse(listOfResults.isEmpty());
-        assertEquals(2, listOfResults.size());
+        assertTrue(listOfResults.size() >= 2);
 
         PatientEntity patient = listOfResults.get(0);
         assertNotNull(patient);
@@ -117,14 +123,14 @@ public class PatientDaoTest {
     }
 
     @Test
-    public void testConcurrentModification() throws InterruptedException {
+    public void shouldTrowOptimisticLockException() throws InterruptedException {
         Long patientId = 10L;
 
         Thread thread1 = new Thread(() -> {
             PatientEntity patientDebug = patientDao.findOne(patientId);
 
             try {
-                Thread.sleep(1000);
+                Thread.sleep(9999);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

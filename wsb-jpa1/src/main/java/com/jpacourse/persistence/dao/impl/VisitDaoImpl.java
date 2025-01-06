@@ -13,7 +13,7 @@ public class VisitDaoImpl extends AbstractDao<VisitEntity, Long> implements Visi
     public Collection<VisitEntity> findByPatient(Long patientId) {
 
         return this.entityManager.createQuery(
-                "select visitEntity from VisitEntity where visitEntity.patient.id = :patientId", VisitEntity.class)
+                "select visitEntity from VisitEntity visitEntity where visitEntity.patient.id = :patientId", VisitEntity.class)
                 .setParameter("patientId", patientId)
                 .getResultList();
     }
