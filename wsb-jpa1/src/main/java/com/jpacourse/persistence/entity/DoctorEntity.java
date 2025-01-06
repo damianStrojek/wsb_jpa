@@ -31,12 +31,16 @@ public class DoctorEntity {
 	@Enumerated(EnumType.STRING)
 	private Specialization specialization;
 
-	// One way relation
+	/*
+		One-To-One relation - there can be one Address for each Doctor
+	 */
 	@OneToOne(cascade=CascadeType.ALL, fetch=FetchType.LAZY, optional=false)
 	@JoinColumn(name="address_id")
 	private AddressEntity address;
 
-	// Two-way relation
+	/*
+	 	One-To-Many relation - there can be one Doctor with many different Visits assigned
+	 */
 	@OneToMany(mappedBy="doctor", cascade={CascadeType.PERSIST, CascadeType.MERGE}, fetch=FetchType.LAZY)
 	private Collection<VisitEntity> visits;
 
@@ -104,7 +108,9 @@ public class DoctorEntity {
 		this.address = address;
 	}
 
-	public Collection<VisitEntity> getVisits() {return visits;}
+	public Collection<VisitEntity> getVisits() {
+		return visits;
+	}
 
 	public void setVisits(Collection<VisitEntity> visits) {
 		this.visits = visits;
@@ -112,13 +118,11 @@ public class DoctorEntity {
 
 	public void addVisit(VisitEntity visit) {
 		visits.add(visit);
-
 		visit.setDoctor(this);
 	}
 
 	public void removeVisit(VisitEntity visit) {
 		visits.remove(visit);
-
 		visit.setDoctor(null);
 	}
 

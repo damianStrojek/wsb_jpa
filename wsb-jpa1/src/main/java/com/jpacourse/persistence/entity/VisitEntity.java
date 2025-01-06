@@ -17,17 +17,23 @@ public class VisitEntity {
 	@Column(nullable = false)
 	private LocalDateTime time;
 
-	// Two-way relation
+	/*
+		Many-To-One relation - there can be many Visits for the same Patient
+	 */
 	@ManyToOne
 	@JoinColumn(name="patient_id")
 	private PatientEntity patient;
 
-	// Two-way relation
+	/*
+		Many-To-One relation - there can be many Visits with the same Doctor
+	 */
 	@ManyToOne
 	@JoinColumn(name="doctor_id")
 	private DoctorEntity doctor;
 
-	// Two-way relation
+	/*
+	 	One-To-Many relation - there can be one Visit with many MedicalTreatments
+	 */
 	@OneToMany(mappedBy="visit", cascade=CascadeType.ALL, fetch=FetchType.LAZY, orphanRemoval=true)
 	private Collection<MedicalTreatmentEntity> medicalTreatments;
 

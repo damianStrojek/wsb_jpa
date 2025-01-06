@@ -64,12 +64,14 @@ public abstract class AbstractDao<T, K extends Serializable> implements Dao<T, K
 
 	@Override
 	public void deleteAll() {
-		entityManager.createQuery("delete " + getDomainClassName()).executeUpdate();
+		entityManager.createQuery(
+				"delete " + getDomainClassName()).executeUpdate();
 	}
 
 	@Override
 	public long count() {
-		return (long) entityManager.createQuery("Select count(*) from " + getDomainClassName()).getSingleResult();
+		return (long) entityManager.createQuery(
+				"select count(*) from " + getDomainClassName()).getSingleResult();
 	}
 
 	@Override

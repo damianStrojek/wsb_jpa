@@ -1,11 +1,6 @@
 package com.jpacourse.persistence.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.persistence.Column;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "ADDRESS")
@@ -28,8 +23,19 @@ public class AddressEntity {
 	private String postalCode;
 
 	/*
-		One way relation (Child from Patient and Child from Doctor)
+		One-To-One relation - one Address can be assigned to one Patient
+		# I would argue with this one because there can be many Patients under the same roof
+		# but it might be my mistake when reading the graph
 	 */
+	@OneToOne
+	private PatientEntity patientEntity;
+
+	/*
+		One-To-One relation - one Address can be assigned to one Patient
+		# Same situation as with patientEntity
+	 */
+	@OneToOne
+	private DoctorEntity doctorEntity;
 
 	public Long getId() {
 		return id;
@@ -69,6 +75,22 @@ public class AddressEntity {
 
 	public void setPostalCode(String postalCode) {
 		this.postalCode = postalCode;
+	}
+
+	public PatientEntity getPatient() {
+		return patientEntity;
+	}
+
+	public void setPatient(PatientEntity patient) {
+		this.patientEntity = patient;
+	}
+
+	public DoctorEntity getDoctor() {
+		return doctorEntity;
+	}
+
+	public void setDoctor(DoctorEntity doctor) {
+		this.doctorEntity = doctor;
 	}
 
 }

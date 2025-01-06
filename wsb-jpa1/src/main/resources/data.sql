@@ -29,16 +29,16 @@ INSERT INTO doctor (id, first_name, last_name, telephone_number, email, doctor_n
 INSERT INTO doctor (id, first_name, last_name, telephone_number, email, doctor_number, specialization, address_id) VALUES (10, 'Jae', 'Kim', '+82 2 2123 4567', 'jae.kim@seoulmed.kr', 'D015', 'GP', 15);
 
 -- 10 examples for Patient entity
-INSERT INTO patient (id, first_name, last_name, telephone_number, email, patient_number, date_of_birth, address_id) VALUES (1, 'Taro', 'Sato', '+81 90 8765 4321', 'taro.sato@japanmail.co.jp', 'P001', '1985-03-22', 1);
+INSERT INTO patient (id, first_name, last_name, telephone_number, email, patient_number, date_of_birth, address_id) VALUES (1, 'Taro', 'Strojek', '+81 90 8765 4321', 'taro.sato@japanmail.co.jp', 'P001', '1985-03-22', 1);
 INSERT INTO patient (id, first_name, last_name, telephone_number, email, patient_number, date_of_birth, address_id) VALUES (2, 'Pierre', 'Lemoine', '+33 6 23 45 67 89', 'pierre.lemoine@parismail.fr', 'P002', '1990-06-15', 2);
 INSERT INTO patient (id, first_name, last_name, telephone_number, email, patient_number, date_of_birth, address_id) VALUES (3, 'Sarah', 'Davis', '+1 646-555-9876', 'sarah.davis@nycmail.com', 'P003', '1982-11-11', 3);
-INSERT INTO patient (id, first_name, last_name, telephone_number, email, patient_number, date_of_birth, address_id) VALUES (4, 'Ivan', 'Popov', '+7 917 987-65-43', 'ivan.popov@medmoscow.ru', 'P004', '1993-02-25', 4);
+INSERT INTO patient (id, first_name, last_name, telephone_number, email, patient_number, date_of_birth, address_id,is_ill) VALUES (4, 'Ivan', 'Popov', '+7 917 987-65-43', 'ivan.popov@medmoscow.ru', 'P004', '1993-02-25', 4,true);
 INSERT INTO patient (id, first_name, last_name, telephone_number, email, patient_number, date_of_birth, address_id) VALUES (5, 'Charlotte', 'Evans', '+61 3 9876 5432', 'charlotte.evans@sydney.com.au', 'P005', '1987-04-05', 5);
 INSERT INTO patient (id, first_name, last_name, telephone_number, email, patient_number, date_of_birth, address_id) VALUES (6, 'Oliver', 'Smith', '+44 7911 123 456', 'oliver.smith@londonmail.co.uk', 'P006', '1995-07-12', 6);
-INSERT INTO patient (id, first_name, last_name, telephone_number, email, patient_number, date_of_birth, address_id) VALUES (7, 'Carlos', 'Martinez', '+54 9 11 5555-4444', 'carlos.martinez@buenosairesmail.ar', 'P007', '2001-09-30', 8);
+INSERT INTO patient (id, first_name, last_name, telephone_number, email, patient_number, date_of_birth, address_id,is_ill) VALUES (7, 'Carlos', 'Martinez', '+54 9 11 5555-4444', 'carlos.martinez@buenosairesmail.ar', 'P007', '2001-09-30', 8,true);
 INSERT INTO patient (id, first_name, last_name, telephone_number, email, patient_number, date_of_birth, address_id) VALUES (8, 'Giulia', 'Bianchi', '+39 345 678 9012', 'giulia.bianchi@romemail.it', 'P008', '1989-01-18', 9);
 INSERT INTO patient (id, first_name, last_name, telephone_number, email, patient_number, date_of_birth, address_id) VALUES (9, 'Lucas', 'Costa', '+55 11 9999-8888', 'lucas.costa@riomail.br', 'P009', '1994-08-23', 10);
-INSERT INTO patient (id, first_name, last_name, telephone_number, email, patient_number, date_of_birth, address_id) VALUES (10, 'Ji-Hye', 'Lee', '+82 10 2345 6789', 'ji-hye.lee@seoulmail.kr', 'P023', '1992-05-05', 15);
+INSERT INTO patient (id, first_name, last_name, telephone_number, email, patient_number, date_of_birth, address_id) VALUES (10, 'Ji-Hye', 'Strojek', '+82 10 2345 6789', 'ji-hye.lee@seoulmail.kr', 'P023', '1992-05-05', 15);
 
 -- 15 examples for Visits entity
 INSERT INTO visit (id, description, time, doctor_id, patient_id) VALUES (1, 'Emergency check-up after slipping on a banana peel', '2024-11-15 21:29:31', 7, 2);
@@ -50,11 +50,11 @@ INSERT INTO visit (id, description, time, doctor_id, patient_id) VALUES (6, 'Ann
 INSERT INTO visit (id, description, time, doctor_id, patient_id) VALUES (7, 'Consultation after drinking too much coffee at the office', '2024-12-20 11:00:00', 9, 8);
 INSERT INTO visit (id, description, time, doctor_id, patient_id) VALUES (8, 'Post-ice-skating visit for bruised knees', '2024-12-22 14:25:00', 10, 9);
 INSERT INTO visit (id, description, time, doctor_id, patient_id) VALUES (9, 'Visit for feeling dizzy after spinning too much at a carnival', '2024-12-25 12:15:00', 1, 10);
-INSERT INTO visit (id, description, time, doctor_id, patient_id) VALUES (10, 'Consultation about sore throat after karaoke night', '2024-12-30 16:40:00', 2, 11);
-INSERT INTO visit (id, description, time, doctor_id, patient_id) VALUES (11, 'Emergency visit for twisted ankle while dancing salsa', '2024-12-31 19:10:00', 3, 12);
-INSERT INTO visit (id, description, time, doctor_id, patient_id) VALUES (12, 'Health check after participating in a taco-eating contest', '2025-01-02 08:00:00', 4, 13);
-INSERT INTO visit (id, description, time, doctor_id, patient_id) VALUES (13, 'Post-triathlon consultation for sore muscles', '2025-01-03 12:55:00', 5, 14);
-INSERT INTO visit (id, description, time, doctor_id, patient_id) VALUES (14, 'Check-up for running a marathon while wearing clown shoes', '2025-01-04 10:30:00', 6, 15);
+INSERT INTO visit (id, description, time, doctor_id, patient_id) VALUES (10, 'Consultation about sore throat after karaoke night', '2024-12-30 16:40:00', 2, 5);
+INSERT INTO visit (id, description, time, doctor_id, patient_id) VALUES (11, 'Emergency visit for twisted ankle while dancing salsa', '2024-12-31 19:10:00', 3, 6);
+INSERT INTO visit (id, description, time, doctor_id, patient_id) VALUES (12, 'Health check after participating in a taco-eating contest', '2025-01-02 08:00:00', 4, 9);
+INSERT INTO visit (id, description, time, doctor_id, patient_id) VALUES (13, 'Post-triathlon consultation for sore muscles', '2025-01-03 12:55:00', 5, 1);
+INSERT INTO visit (id, description, time, doctor_id, patient_id) VALUES (14, 'Check-up for running a marathon while wearing clown shoes', '2025-01-04 10:30:00', 6, 3);
 INSERT INTO visit (id, description, time, doctor_id, patient_id) VALUES (15, 'Visit after too much stress from trying to solve Rubik’s cube in under 2 minutes', '2025-01-05 18:20:00', 7, 1);
 
 
